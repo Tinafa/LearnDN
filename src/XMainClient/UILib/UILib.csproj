@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3D2C5D2-6809-44F9-9A64-35D624322A12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UILib</RootNamespace>
+    <AssemblyName>UILib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\UILib.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Profiler|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Profiler\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ENABLE_PROFILER</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugAndroid|AnyCPU'">
+    <OutputPath>bin\DebugAndroid\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\lib\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IXRadarMap.cs" />
+    <Compile Include="IXUIAtlas.cs" />
+    <Compile Include="IXUIBehaviour.cs" />
+    <Compile Include="IXUIBillBoardCompRef.cs" />
+    <Compile Include="IXUISpecLabelSymbol.cs" />
+    <Compile Include="IXUIButton.cs" />
+    <Compile Include="IXUICenterOnClick.cs" />
+    <Compile Include="IXUICheckBox.cs" />
+    <Compile Include="IXUIComboBox.cs" />
+    <Compile Include="IXUIDlg.cs" />
+    <Compile Include="IXUIDragDropItem.cs" />
+    <Compile Include="IXUIInput.cs" />
+    <Compile Include="IXUILabel.cs" />
+    <Compile Include="IXUIList.cs" />
+    <Compile Include="IXUIListItem.cs" />
+    <Compile Include="IXUIObject.cs" />
+    <Compile Include="INGUI.cs" />
+    <Compile Include="IXUIScrollView.cs" />
+    <Compile Include="IXUITexture.cs" />
+    <Compile Include="IXUIProgress.cs" />
+    <Compile Include="IXUIScrollBar.cs" />
+    <Compile Include="IXUISlider.cs" />
+    <Compile Include="IXUISprite.cs" />
+    <Compile Include="IXUITable.cs" />
+    <Compile Include="IXUITextList.cs" />
+    <Compile Include="IXUITool.cs" />
+    <Compile Include="IXUIPlayTweenGroup.cs" />
+    <Compile Include="IXUITweener.cs" />
+    <Compile Include="IXUITweenTool.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XUIObjectBase.cs" />
+    <Compile Include="IXUIPanel.cs" />
+    <Compile Include="IXUIPopupList.cs" />
+    <Compile Include="IXUIWrapContent.cs" />
+    <Compile Include="IXUILabelSymbol.cs" />
+    <Compile Include="IXUISpriteAnimation.cs" />
+    <Compile Include="IXUISthCollector.cs" />
+    <Compile Include="IXUILongPress.cs" />
+    <Compile Include="IXUICD.cs" />
+    <Compile Include="IXUISimpleList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>IF "$(ConfigurationName)"=="Debug" (
+
+"$(Unity5Path)\Editor\Data\MonoBleedingEdge\bin\mono.exe" "$(Unity5Path)\Editor\Data\MonoBleedingEdge\lib\mono\4.5\pdb2mdb.exe" $(TargetFileName)
+
+copy /Y $(TargetFileName).mdb "$(LearnXResourcePath)\XProject\Assets\Lib\$(TargetFileName).mdb" 
+
+copy /Y $(TargetFileName) "$(LearnXResourcePath)\XProject\Assets\Lib\$(TargetFileName)" 
+)
+
+IF "$(ConfigurationName)"=="Profiler" (
+
+"$(Unity5Path)\Editor\Data\MonoBleedingEdge\bin\mono.exe" "$(Unity5Path)\Editor\Data\MonoBleedingEdge\lib\mono\4.5\pdb2mdb.exe" $(TargetFileName)
+
+copy /Y $(TargetFileName).mdb "$(LearnXResourcePath)\XProject\Assets\Lib\$(TargetFileName).mdb" 
+
+copy /Y $(TargetFileName) "$(LearnXResourcePath)\XProject\Assets\Lib\$(TargetFileName)"
+)
+
+
+IF "$(ConfigurationName)"=="Release" (
+
+copy /Y $(TargetFileName) "$(LearnXResourcePath)\XProject\Assets\Lib\$(TargetFileName)"
+)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
