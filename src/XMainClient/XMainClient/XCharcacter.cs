@@ -4,15 +4,27 @@ using UnityEngine;
 
 namespace XMainClient
 {
-    public abstract class Charcacter : BaseObject
-    {
-        public static new readonly uint uuID = XCommon.Singleton.XHash("Charcacter");
-        public override uint ID { get { return uuID; } }
-
+    public abstract class XCharcacter : XBaseObject
+    {     
         StateFun _previous = null;
         StateFun _current = null;
 
         private IDictionary<int, StateFun> s_StateMap = new Dictionary<int, StateFun>();
+
+        protected virtual void Start()
+        {
+            RegisterEvent(XEventDefine.XEvent_Idle, OnEventIdle);
+            RegisterEvent(XEventDefine.XEvent_Move, OnEventMove);
+            RegisterEvent(XEventDefine.XEvent_Chop, OnEventChop);
+        }
+
+        #region Events
+        protected abstract bool OnEventIdle(XEventArgs e);
+
+        protected abstract bool OnEventMove(XEventArgs e);
+
+        protected abstract bool OnEventChop(XEventArgs e);
+        #endregion
 
         protected void RegisterState(int stateID, StateFun state)
         {

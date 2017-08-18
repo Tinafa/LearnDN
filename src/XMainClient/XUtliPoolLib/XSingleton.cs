@@ -8,7 +8,7 @@ namespace XUtliPoolLib
     public abstract class XBaseSingleton
     {
         public abstract bool Init();
-        public abstract void Unint();
+        public abstract void Uninit();
     }
 
     public abstract class XSingleton<T> : XBaseSingleton where T : new()
@@ -23,7 +23,7 @@ namespace XUtliPoolLib
 
         private static readonly T _instance = new T();
 
-        public static T Singleton
+        public static T singleton
         {
             get
             {
@@ -33,6 +33,6 @@ namespace XUtliPoolLib
 
         public override bool Init(){return true;}
 
-        public override void Unint(){ }
+        public override void Uninit(){ }
     }
 }

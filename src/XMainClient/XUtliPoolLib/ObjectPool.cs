@@ -88,4 +88,24 @@ namespace XUtliPoolLib
             s_Pool.Release(toRelease);
         }
     }
+
+    public class ListPool<T>
+    {
+        // Object pool to avoid allocations.
+        private static readonly ObjectPool<List<T>> s_Pool = new ObjectPool<List<T>>(Create, l => l.Clear(), l => l.Clear());
+
+        public static List<T> Create()
+        {
+            return new List<T>();
+        }
+        public static List<T> Get()
+        {
+            return s_Pool.Get();
+        }
+
+        public static void Release(List<T> toRelease)
+        {
+            s_Pool.Release(toRelease);
+        }
+    }
 }

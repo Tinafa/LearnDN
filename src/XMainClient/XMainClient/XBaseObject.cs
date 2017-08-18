@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace XMainClient
 {
-    public abstract class BaseObject : MonoBehaviour
+    public abstract class XBaseObject : MonoBehaviour
     {
-        public static readonly uint uuID = 0;
-        public abstract uint ID { get; }
+        public uint UID { get; set; }
 
         public delegate bool XEventHandler(XEventArgs e);
         private Dictionary<int, XEventHandler> _eventMap = new Dictionary<int, XEventHandler>();

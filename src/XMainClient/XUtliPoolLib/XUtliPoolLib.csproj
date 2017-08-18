@@ -31,22 +31,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="enum2int">
+      <HintPath>..\lib\enum2int.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\lib\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IEntrance.cs" />
+    <Compile Include="Interface\IXGameUI.cs" />
+    <Compile Include="Interface\IXInterface.cs" />
+    <Compile Include="Interface\XInterfaceMgr.cs" />
     <Compile Include="ObjectPool.cs" />
+    <Compile Include="Table\FoodTable.cs" />
+    <Compile Include="Table\ItemTable.cs" />
+    <Compile Include="Table\RepertoryTable.cs" />
+    <Compile Include="Table\SceneTable.cs" />
+    <Compile Include="Table\TableReader.cs" />
+    <Compile Include="Table\XTableAsyncLoader.cs" />
+    <Compile Include="Utility\XHeap.cs" />
+    <Compile Include="Utility\XTimer.cs" />
+    <Compile Include="XDebug.cs" />
     <Compile Include="XSingleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="XUpdater\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace XMainClient
 {
-    public class SoundManager : MonoBehaviour
+    public class XSoundManager : MonoBehaviour
     {
         public AudioSource efxSource;
         public AudioSource musicSource;
-        public static SoundManager instance = null;
+        public static XSoundManager instance = null;
         public float lowPitchRange = .95f;
         public float highPitchRange = 1.0f;
 

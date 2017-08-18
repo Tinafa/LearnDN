@@ -4,16 +4,18 @@ using UnityEngine;
 
 namespace XMainClient
 {
-    public class GameManager : MonoBehaviour
+    public class XGameManager : MonoBehaviour
     {
         public float levelStartDelay = 2f;
         public GameObject welcome;
         public GameObject playerObj = null;
-        Player player = null;
+        public XPlayer player = null;
+        public XPlayerController controller = null;
+
         [HideInInspector]
         public bool playerTurn = true;
 
-        public static GameManager instance = null;
+        public static XGameManager instance = null;
 
         private bool doingSetup = true;
 
@@ -54,7 +56,9 @@ namespace XMainClient
         {
             GameObject prefab = Resources.Load("Prefabs/Player") as GameObject;
             playerObj = Instantiate(prefab,Vector3.zero, Quaternion.identity);
-            player = playerObj.AddComponent<Player>();
+            player = playerObj.AddComponent<XPlayer>();
+            controller = playerObj.AddComponent<XPlayerController>();
+            controller.player = player;
         }
     }
 }

@@ -5,6 +5,16 @@ using System.Text;
 
 namespace XMainClient
 {
+    public enum EState
+    {
+        Min = -1,
+        Idle = 0,
+        Move = 1,
+        Chop = 2,
+        Operation = 3,
+        Max = 4,
+    }
+
     abstract class IParam
     {
         int iInt;
@@ -21,7 +31,7 @@ namespace XMainClient
         Funs _updateFun;
         Fun _exitFun;
 
-        public void StateFunc(Fun enterFun, Funs updateFun, Fun exitFun)
+        public StateFun(Fun enterFun, Funs updateFun, Fun exitFun)
         {
             _enterFun = enterFun;
             _updateFun = updateFun;

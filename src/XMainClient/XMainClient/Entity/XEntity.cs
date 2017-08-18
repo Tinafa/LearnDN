@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XMainClient
 {
-    internal abstract class XEntity : XObject
+    public abstract class XEntity : XObject
     {
         protected enum EnitityType
         {

@@ -12,21 +12,36 @@ namespace XMainClient
         XEvent_Move = 1,
         XEvent_Jump = 2,
         XEvent_Fall = 3,
+        XEvent_Chop = 4,
+        XEvent_ChopDamage = 5,
     }
 
     public abstract class XEventArgs
     {
         protected long _token = 0;
-        protected XObject _firer = null;
+        protected XBaseObject _firer = null;
 
         public XEventArgs()
         {
-            _token = XCommon.Singleton.UniqueToken;
+            _token = XCommon.singleton.UniqueToken;
+            ManualRecycle = false;
+        }
+
+        public virtual void Recycle()
+        {
+            _token = 0;
+            _firer = null;
         }
 
         protected XEventDefine _eDefine = XEventDefine.XEvent_Invalid;
 
-        public XObject Firer
+        public bool ManualRecycle
+        {
+            get;
+            set;
+        }
+
+        public XBaseObject Firer
         {
             get { return _firer; }
             set { _firer = value; }
@@ -42,5 +57,74 @@ namespace XMainClient
             get { return _token; }
             set { _token = value; }
         }
+    }
+
+    public class XEventIdle : XEventArgs
+    {
+        public XEventIdle()
+        {
+            _eDefine = XEventDefine.XEvent_Idle;
+        }
+
+        public override void Recycle()
+        {
+            base.Recycle();
+
+            XEventPool<XEventIdle>.Recycle(this);
+        }
+    }
+
+    public class XEventMove : XEventArgs
+    {      
+
+        public XEventMove()
+        {
+            _eDefine = XEventDefine.XEvent_Move;
+        }
+
+        public override void Recycle()
+        {
+            base.Recycle();
+     
+            Horizontal = 0;
+            Vertical = 0;
+
+            XEventPool<XEventMove>.Recycle(this);
+        }
+
+        public int Horizontal { get; set; }
+        public int Vertical { get; set; }
+    }
+
+    public class XEventChop : XEventArgs
+    {
+        public XEventChop()
+        {
+            _eDefine = XEventDefine.XEvent_Chop;
+        }
+
+        public override void Recycle()
+        {
+            base.Recycle();
+        }
+    }
+
+    public class XEventChopDamage : XEventArgs
+    {
+        public XEventChopDamage()
+        {
+            _eDefine = XEventDefine.XEvent_ChopDamage;
+        }
+
+        public override void Recycle()
+        {
+            base.Recycle();
+
+            Attacker = null;
+            DamageNum = 0;
+        }
+
+        public XActor Attacker { get; set; }
+        public int DamageNum { get; set; }
     }
 }

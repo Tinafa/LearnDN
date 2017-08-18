@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using XUtliPoolLib;
 
 namespace XMainClient
 {
-    class XResourceLoaderMgr
+    public sealed class XResourceLoaderMgr : XSingleton<XResourceLoaderMgr>
     {
         public class UniteObjectInfo
         {
@@ -21,7 +22,7 @@ namespace XMainClient
 
         public XResourceLoaderMgr()
         {
-            _prefixHash = XCommon.Singleton.XHashLowerRelpaceDot(_prefixHash, "Assets.Resources.");
+            _prefixHash = XCommon.singleton.XHashLowerRelpaceDot(_prefixHash, "Assets.Resources.");
         }
 
         public GameObject CreateFromPrefab(string location, Vector3 position, Quaternion quaternion, bool usePool = true, bool dontDestroy = false)
@@ -72,8 +73,8 @@ namespace XMainClient
         private uint Hash(string location, string ext)
         {
             uint hash = 0;
-            hash = XCommon.Singleton.XHashLowerRelpaceDot(_prefixHash, location);
-            return XCommon.Singleton.XHashLowerRelpaceDot(hash, ext);
+            hash = XCommon.singleton.XHashLowerRelpaceDot(_prefixHash, location);
+            return XCommon.singleton.XHashLowerRelpaceDot(hash, ext);
 
         }
     }

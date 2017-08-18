@@ -8,9 +8,9 @@ namespace XMainClient
         void OnAnimationOverrided();
     }
 
-    internal sealed class XStateMachine : XComponent,IAnimStateMachine
+    public sealed class XStateMachine : XComponent,IAnimStateMachine
     {
-        public static new readonly uint uuID = XCommon.Singleton.XHash("StateMachine");
+        public static new readonly uint uuID = XCommon.singleton.XHash("StateMachine");
         public override uint ID { get { return uuID; } }
 
         public void OnAnimationOverrided()
