@@ -51,6 +51,7 @@
     <Compile Include="Table\RepertoryTable.cs" />
     <Compile Include="Table\SceneTable.cs" />
     <Compile Include="Table\TableReader.cs" />
+    <Compile Include="Table\TalkTable.cs" />
     <Compile Include="Table\XTableAsyncLoader.cs" />
     <Compile Include="Utility\XHeap.cs" />
     <Compile Include="Utility\XTimer.cs" />

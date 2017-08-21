@@ -12,6 +12,8 @@ namespace XMainClient
         public XPlayer player = null;
         public XPlayerController controller = null;
 
+        public XTalk talk = null;
+
         [HideInInspector]
         public bool playerTurn = true;
 
@@ -59,6 +61,10 @@ namespace XMainClient
             player = playerObj.AddComponent<XPlayer>();
             controller = playerObj.AddComponent<XPlayerController>();
             controller.player = player;
+
+            talk = playerObj.AddComponent<XTalk>();
+            talk.SetHost(playerObj.transform);
+            talk.BeginSay(2f);
         }
     }
 }

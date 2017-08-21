@@ -60,6 +60,8 @@ namespace XMainClient
             _singletons.Add(UIManager.singleton);
             _singletons.Add(XScene.singleton);
             _singletons.Add(XSceneMgr.singleton);
+            _singletons.Add(XAttributeMgr.singleton);
+            _singletons.Add(XTalkCenter.singleton);
 
 #if DEBUG
             _fpsHandler = new XTimerMgr.ElapsedEventHandler(CalculateFPS);
