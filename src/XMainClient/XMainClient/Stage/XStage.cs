@@ -84,10 +84,13 @@ namespace XMainClient
              *    |
              *    this.OnEnterScene();
              */
+
+            UIManager.singleton.OnEnterScene();
         }
 
         public virtual void OnLeaveScene(bool transfer)
         {
+            UIManager.singleton.OnLeaveScene(false);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using XUtliPoolLib;
 using UnityEngine;
 using UILib;
+using XMainClient.UI;
 
 namespace XMainClient
 {
@@ -46,9 +47,16 @@ namespace XMainClient
 
             if (UIRoot == null)
             {
-                UIRoot = (XResourceLoaderMgr.singleton.CreateFromPrefab("UI/Common/UIRoot", false, true) as GameObject).transform;
-                GameObject.DontDestroyOnLoad(UIRoot);
+                GameObject root = GameObject.FindGameObjectWithTag("UIRoot");
+                if (root != null)
+                    UIRoot = root.transform;                
             }
+            if(UIRoot == null)
+            {
+                UIRoot = (XResourceLoaderMgr.singleton.CreateFromPrefab("UI/Common/UI Root", false, true) as GameObject).transform;
+            }
+            if(UIRoot != null)
+                GameObject.DontDestroyOnLoad(UIRoot);
 
             return true;
         }
@@ -108,6 +116,27 @@ namespace XMainClient
         public bool Deprecated
         {
             get;set;
+        }
+
+        public void LoadHallUI(EXStage eStage)
+        {
+            XMainHallDlg.singleton.Load();
+            XMainHallDlg.singleton.SetVisible(true);
+        }
+
+        public void UnLoadHallUI(EXStage eStage)
+        {
+            XMainHallDlg.singleton.UnLoad();
+        }
+
+        public void LoadLoginUI(EXStage eStage)
+        {
+            XLoginDlg.singleton.SetVisible(true);
+        }
+
+        public void UnLoadLoginUI(EXStage eStage)
+        {
+            XLoginDlg.singleton.UnLoad();
         }
     }
 }

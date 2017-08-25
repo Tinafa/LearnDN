@@ -44,6 +44,8 @@
     <Compile Include="Interface\IEntrance.cs" />
     <Compile Include="Interface\IXGameUI.cs" />
     <Compile Include="Interface\IXInterface.cs" />
+    <Compile Include="Interface\IXOperationRecord.cs" />
+    <Compile Include="Interface\IXTutorial.cs" />
     <Compile Include="Interface\XInterfaceMgr.cs" />
     <Compile Include="ObjectPool.cs" />
     <Compile Include="Table\FoodTable.cs" />
@@ -53,6 +55,8 @@
     <Compile Include="Table\TableReader.cs" />
     <Compile Include="Table\TalkTable.cs" />
     <Compile Include="Table\XTableAsyncLoader.cs" />
+    <Compile Include="Utility\XCommon.cs" />
+    <Compile Include="Utility\XDataWrapper.cs" />
     <Compile Include="Utility\XHeap.cs" />
     <Compile Include="Utility\XTimer.cs" />
     <Compile Include="XDebug.cs" />

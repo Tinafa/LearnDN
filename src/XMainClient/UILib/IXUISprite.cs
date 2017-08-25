@@ -10,7 +10,7 @@ namespace UILib
     public delegate bool SpriteDragEventHandler(Vector2 delta);
     public interface IXUISprite : IXUIObject, IUIWidget, IXUICD
     {
-        IXUIAtlas uiAtlas { get; }
+        //IXUIAtlas uiAtlas { get; }
         string spriteName { get; set; }
         int  spriteWidth { get; set; }
         int  spriteHeight { get; set; }
@@ -26,19 +26,14 @@ namespace UILib
         void SetGrey(bool bGrey);
         void SetColor(Color c);
         void SetAudioClip(string name);
-        void CloseScrollView();
         void MakePixelPerfect();
         void RegisterSpriteClickEventHandler(SpriteClickEventHandler eventHandler);
         void RegisterSpritePressEventHandler(SpritePressEventHandler eventHandler);
         void RegisterSpriteDragEventHandler(SpriteDragEventHandler eventHandler);
 
-        void SetRootAsUIPanel(bool bFlag);
-
         void SetFillAmount(float val);
         void SetFlipHorizontal(bool bValue);
         void SetFlipVertical(bool bValue);
-
-        void ResetAnimationAndPlay();
 
         SpriteClickEventHandler GetSpriteClickHandler();
         SpritePressEventHandler GetSpritePressHandler();

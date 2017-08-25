@@ -30,11 +30,15 @@ namespace XMainClient
         public override void OnEnterScene(uint sceneid, bool transfer)
         {
             base.OnEnterScene(sceneid, transfer);
+
+            XGameUI.singleton.LoadLoginUI(_eStage);
         }
 
         public override void OnLeaveScene(bool transfer)
         {
             base.OnLeaveScene(transfer);
+
+            XGameUI.singleton.UnLoadLoginUI(_eStage);
         }
 
         public override void Play()

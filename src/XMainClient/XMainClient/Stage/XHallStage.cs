@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using XMainClient.UI;
 
 namespace XMainClient
 {
@@ -36,11 +37,15 @@ namespace XMainClient
                 gameManager = gameGB.AddComponent<XGameManager>();
                 soundManager = gameGB.AddComponent<XSoundManager>();
             }
+
+            XGameUI.singleton.LoadHallUI(_eStage);
         }
 
         public override void OnLeaveScene(bool transfer)
         {
             base.OnLeaveScene(transfer);
+
+            XGameUI.singleton.UnLoadHallUI(_eStage);
         }
 
 

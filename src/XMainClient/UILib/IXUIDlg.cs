@@ -14,12 +14,9 @@ namespace UILib
         bool hideMainMenu { get; }
         bool pushstack { get; }
         bool isMainUI { get; }
-        bool isHideTutorial { get; }
         
-        bool isHideChat { get; }
         int sysid { get; }
         bool fullscreenui { get; }
-        bool needOnTop { get; }
         void OnUpdate();
         void OnPostUpdate();
         void Load();
@@ -29,12 +26,9 @@ namespace UILib
         bool IsVisible();
         void Reset();
         void SetDepthZ(int nDepthZ);
-        bool BindReverse(IXUIBehaviour uiBehaviour);
         void SetAlpha(float a);
         void StackRefresh();
         void LeaveStackTop();
-        void SetRelatedVisible(bool bVisible);
-        int[] GetTitanBarItems();
     }
 
     public interface IXUIInterface

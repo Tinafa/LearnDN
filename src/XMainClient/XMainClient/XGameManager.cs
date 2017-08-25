@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using XUtliPoolLib;
 
 namespace XMainClient
 {
@@ -21,6 +22,9 @@ namespace XMainClient
 
         private bool doingSetup = true;
 
+        private bool isGameStarted = false;
+        public bool GameStarted { get { return isGameStarted; } }
+
         private void Awake()
         {
             if (null == instance)
@@ -28,6 +32,7 @@ namespace XMainClient
             if (instance != this)
                 Destroy(gameObject);
 
+            isGameStarted = false;
             InitGame();
         }
 
@@ -43,28 +48,77 @@ namespace XMainClient
         void HideLevelImage()
         {
             welcome.SetActive(false);
-            doingSetup = false;
 
-            LoadLevel();
+            StartGame();
         }
 
         private void Update()
         {
-            if (doingSetup || playerTurn)
+            if (doingSetup)
                 return;
+
+            XTimeSys.singleton.Update();
         }
 
-        void LoadLevel(int level=0)
+        void StartGame(int level=0)
         {
-            GameObject prefab = Resources.Load("Prefabs/Player") as GameObject;
-            playerObj = Instantiate(prefab,Vector3.zero, Quaternion.identity);
+            //加载存档
+            XSaveDoc save=null;
+            if (XStorageSys.singleton.IsLoadSave)
+            {
+                save = XStorageSys.singleton.CurSaveDoc;
+            }
+
+            bool IsNewSave = false;
+            if (save == null || save.TimeData.Time == 0) IsNewSave = true;
+    
+            playerObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Player", Vector3.zero, Quaternion.identity) as GameObject;
+            playerObj.name = IsNewSave ? "River" : save.PlayerData.Name;
             player = playerObj.AddComponent<XPlayer>();
             controller = playerObj.AddComponent<XPlayerController>();
             controller.player = player;
 
+            //> 新的游戏
+            if (IsNewSave)
+            {
+                XTimeSys.singleton.BeginRecord(0);
+                XWeatherSys.singleton.GetNewdayWeather();
+            }
+            //> 继续游戏
+            else
+            {
+                XTimeSys.singleton.BeginRecord(save.TimeData.Time);
+                XWeatherSys.singleton.SetWeatherState(save.WeatherData);
+                playerObj.transform.localPosition = new Vector3(save.PlayerData.PosX, save.PlayerData.PosY, 0);
+                player.SetDirection(save.PlayerData.IsRight);
+            }
+
+            XTimeSys.singleton.RegisterDayNightHandler(OnChangeDayNight);
+            XTimeSys.singleton.RegisterDayChangeHandler(OnChangeDay);
+            XWeatherSys.singleton.BeginWeatherSys();
+
             talk = playerObj.AddComponent<XTalk>();
             talk.SetHost(playerObj.transform);
-            talk.BeginSay(2f);
+            talk.BeginSay(8f);
+
+            doingSetup = false;
+            isGameStarted = true;
+        }
+
+        void OnMinute(XDateTime time)
+        {
+            //XDebug.singleton.AddGreenLog("OnMinute : ", time.hh.ToString(),":", time.mm.ToString());
+        }
+
+        void OnChangeDayNight(bool bToDayTime)
+        {
+            XDebug.singleton.AddGreenLog("OnChangeDayNight : ", bToDayTime ? "天亮了":"黑夜来临");
+        }
+
+        void OnChangeDay(XDateTime time)
+        {
+            XWeatherSys.singleton.GetNewdayWeather();
+            XDebug.singleton.AddGreenLog("OnChangeDay : ", "又一天 " , time.ToString());
         }
     }
 }

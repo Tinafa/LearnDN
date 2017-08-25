@@ -88,46 +88,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IXRadarMap.cs" />
     <Compile Include="IXUIAtlas.cs" />
     <Compile Include="IXUIBehaviour.cs" />
-    <Compile Include="IXUIBillBoardCompRef.cs" />
-    <Compile Include="IXUISpecLabelSymbol.cs" />
     <Compile Include="IXUIButton.cs" />
-    <Compile Include="IXUICenterOnClick.cs" />
     <Compile Include="IXUICheckBox.cs" />
-    <Compile Include="IXUIComboBox.cs" />
     <Compile Include="IXUIDlg.cs" />
-    <Compile Include="IXUIDragDropItem.cs" />
     <Compile Include="IXUIInput.cs" />
     <Compile Include="IXUILabel.cs" />
     <Compile Include="IXUIList.cs" />
     <Compile Include="IXUIListItem.cs" />
     <Compile Include="IXUIObject.cs" />
     <Compile Include="INGUI.cs" />
-    <Compile Include="IXUIScrollView.cs" />
-    <Compile Include="IXUITexture.cs" />
-    <Compile Include="IXUIProgress.cs" />
-    <Compile Include="IXUIScrollBar.cs" />
-    <Compile Include="IXUISlider.cs" />
+    <Compile Include="IXUIPanel.cs" />
     <Compile Include="IXUISprite.cs" />
-    <Compile Include="IXUITable.cs" />
-    <Compile Include="IXUITextList.cs" />
+    <Compile Include="IXUITexture.cs" />
     <Compile Include="IXUITool.cs" />
-    <Compile Include="IXUIPlayTweenGroup.cs" />
-    <Compile Include="IXUITweener.cs" />
-    <Compile Include="IXUITweenTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XUIObjectBase.cs" />
-    <Compile Include="IXUIPanel.cs" />
-    <Compile Include="IXUIPopupList.cs" />
-    <Compile Include="IXUIWrapContent.cs" />
-    <Compile Include="IXUILabelSymbol.cs" />
-    <Compile Include="IXUISpriteAnimation.cs" />
-    <Compile Include="IXUISthCollector.cs" />
-    <Compile Include="IXUILongPress.cs" />
     <Compile Include="IXUICD.cs" />
-    <Compile Include="IXUISimpleList.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

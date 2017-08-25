@@ -73,6 +73,11 @@ namespace XMainClient
             return true;
         }
 
+        public static T GetSpecificDocument<T>(uint uuID) where T : XComponent
+        {
+            return XGame.singleton.Doc.GetXComponent(uuID) as T;
+        }
+
         private List<AsyncLoadData> _async_data = new List<AsyncLoadData>(64);
     }
 }

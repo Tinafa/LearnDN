@@ -18,7 +18,6 @@ namespace UILib
         Color GetColor();
         string GetText();
         void SetText(string strText);
-        void SetRootAsUIPanel(bool bFlag);
         void SetColor(Color c);
         void SetEffectColor(Color c);
         void SetGradient(bool bEnable, Color top, Color bottom);

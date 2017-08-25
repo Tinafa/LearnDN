@@ -62,6 +62,10 @@ namespace XMainClient
             _singletons.Add(XSceneMgr.singleton);
             _singletons.Add(XAttributeMgr.singleton);
             _singletons.Add(XTalkCenter.singleton);
+            _singletons.Add(XPlayerfInfoSys.singleton);
+            _singletons.Add(XTimeSys.singleton);
+            _singletons.Add(XWeatherSys.singleton);
+            _singletons.Add(XStorageSys.singleton);
 
 #if DEBUG
             _fpsHandler = new XTimerMgr.ElapsedEventHandler(CalculateFPS);
@@ -111,6 +115,7 @@ namespace XMainClient
             {
                 _stage.Update(delta);
                 _doc.Update(delta);
+                UIManager.singleton.Update(delta);
             }
 
             if (_calc_fps) _fps_count++;
@@ -122,6 +127,7 @@ namespace XMainClient
             {
                 _stage.PostUpdate(delta);
                 _doc.PostUpdate(delta);
+                UIManager.singleton.PostUpdate(delta);
             }
         }
 
@@ -141,6 +147,9 @@ namespace XMainClient
         public override void Uninit()
         {
             SwitchTo(EXStage.Null, 0);
+
+            //保存
+            XStorageSys.singleton.SaveCurrent();
 
             _doc.Uninitilize();
 
