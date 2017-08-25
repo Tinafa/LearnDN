@@ -1,0 +1,11 @@
+<objects>
+  <PlayerData>
+    <Name>River</Name>
+    <Profession>Unity3D客户端程序</Profession>
+    <ProfessionIdx>0</ProfessionIdx>
+    <Time>108</Time>
+    <HP>100</HP>
+    <Satiety>30</Satiety>
+    <WeatherIdx>0</WeatherIdx>
+  </PlayerData>
+</objects>

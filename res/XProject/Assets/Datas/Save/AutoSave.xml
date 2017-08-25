@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSaveDoc>
+  <PlayerData>
+    <Name>River</Name>
+    <Profession>程序员</Profession>
+    <ProfessionIdx>0</ProfessionIdx>
+    <HP>100</HP>
+    <Satiety>30</Satiety>
+    <PosX>1</PosX>
+    <PosY>3</PosY>
+    <IsRight>true</IsRight>
+  </PlayerData>
+  <TimeData>
+    <Time>110</Time>
+    <IsDay>false</IsDay>
+  </TimeData>
+  <WeatherData>
+    <SeasonIdx>3</SeasonIdx>
+    <WeatherIdx>0</WeatherIdx>
+    <Temprature>6.77358627</Temprature>
+    <Humidity>0.259602576</Humidity>
+    <Illumination>49.4926567</Illumination>
+    <Rainfall>0</Rainfall>
+  </WeatherData>
+  <BagData>
+    <Capacity>0</Capacity>
+    <Items />
+  </BagData>
+  <RepertotyData>
+    <Capacity>0</Capacity>
+    <Items />
+  </RepertotyData>
+</XSaveDoc>
