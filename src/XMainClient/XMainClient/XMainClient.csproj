@@ -57,8 +57,13 @@
   <ItemGroup>
     <Compile Include="Components\Attributes\XAttributeMgr.cs" />
     <Compile Include="Components\Attributes\XAttributes.cs" />
+    <Compile Include="Components\Effects\XEftAddHp.cs" />
+    <Compile Include="Components\Effects\XEftBleed.cs" />
+    <Compile Include="Components\Items\XFood.cs" />
+    <Compile Include="Components\Items\XItem.cs" />
     <Compile Include="Components\Talk\XTalk.cs" />
     <Compile Include="Components\Talk\XTalkCenter.cs" />
+    <Compile Include="Components\Effects\XEffect.cs" />
     <Compile Include="CutScene\XAutoFade.cs" />
     <Compile Include="CVSReader.cs" />
     <Compile Include="Documents\XBasementDocument.cs" />

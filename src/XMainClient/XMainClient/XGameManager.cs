@@ -78,6 +78,8 @@ namespace XMainClient
             player = playerObj.AddComponent<XPlayer>();
             controller = playerObj.AddComponent<XPlayerController>();
             controller.player = player;
+            XAttributes attr = playerObj.AddComponent<XAttributes>();
+            player.SetAttr(attr);
 
             //> Crab
             GameObject petObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Crab",new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5, 5), 0),Quaternion.identity) as GameObject;

@@ -6,6 +6,11 @@ namespace XMainClient
 {
     public class XPlayer : XActor
     {
+
+        public List<EffectUpdateHander> effectHandlers;
+        private List<int> removeHandlers;
+        public XAttributes attrComp;
+
         public AudioClip moveSound1;
         public float moveSpeed = 10f;
         public float maxVelocity = 20f;
@@ -21,6 +26,14 @@ namespace XMainClient
 
         private void Init()
         {
+            effectHandlers = new List<EffectUpdateHander>();
+            removeHandlers = new List<int>();
+        }
+
+        public void SetAttr(XAttributes comp)
+        {
+            attrComp = comp;
+            comp.SetHost(this);
         }
 
         private void OnDisable()
@@ -31,6 +44,23 @@ namespace XMainClient
         void CheckIfGameOver()
         {
 
+        }
+
+        protected override void Update()
+        {
+            for(int i= removeHandlers.Count-1; i>=0;--i)
+            {
+                effectHandlers.RemoveAt(i);
+            }
+            removeHandlers.Clear();
+            for (int i=0;i< effectHandlers.Count;++i)
+            {
+                if(!effectHandlers[i](Time.deltaTime))
+                {
+                    removeHandlers.Add(i);
+                }
+            }
+                
         }
 
         protected override void OnChopEnter()
@@ -59,6 +89,19 @@ namespace XMainClient
         public void SetWalkClip(AudioClip clip)
         {
             moveSound1 = clip;
+        }
+
+        public void UseItem(XUseItem item)
+        {
+            if(item != null)
+            {
+                item.Use(this.attrComp);
+            }
+        }
+
+        public void AddEffects(EffectUpdateHander handler)
+        {
+            effectHandlers.Add(handler);
         }
     }
 }

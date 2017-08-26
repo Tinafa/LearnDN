@@ -6,6 +6,7 @@ namespace XMainClient
 {
     class XAttributeMgr : XSingleton<XAttributeMgr>
     {
+
         public override bool Init()
         {
             return true;
