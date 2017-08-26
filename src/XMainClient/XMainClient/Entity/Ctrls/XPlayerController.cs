@@ -4,7 +4,12 @@ using UnityEngine;
 
 namespace XMainClient
 {
-    public class XPlayerController : MonoBehaviour
+    public interface IXController
+    {
+
+    }
+
+    public class XPlayerController : MonoBehaviour, IXController
     {
         public XPlayer player = null;
 

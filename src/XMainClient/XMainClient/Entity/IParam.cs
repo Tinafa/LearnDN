@@ -12,7 +12,8 @@ namespace XMainClient
         Move = 1,
         Chop = 2,
         Operation = 3,
-        Max = 4,
+        MoveTo = 4,
+        Max = 5,
     }
 
     abstract class IParam

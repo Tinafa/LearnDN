@@ -16,6 +16,7 @@ namespace XMainClient
         XEvent_Fall = 3,
         XEvent_Chop = 4,
         XEvent_ChopDamage = 5,
+        XEvent_MoveTo = 6,
     }
 
     public abstract class XEventArgs
@@ -128,5 +129,27 @@ namespace XMainClient
 
         public XActor Attacker { get; set; }
         public int DamageNum { get; set; }
+    }
+
+    public class XEventMoveTo : XEventArgs
+    {
+
+        public XEventMoveTo()
+        {
+            _eDefine = XEventDefine.XEvent_MoveTo;
+        }
+
+        public override void Recycle()
+        {
+            base.Recycle();
+
+            PosX = 0;
+            PosY = 0;
+
+            XEventPool<XEventMoveTo>.Recycle(this);
+        }
+
+        public int PosX { get; set; }
+        public int PosY { get; set; }
     }
 }

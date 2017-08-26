@@ -6,12 +6,12 @@
     <ProfessionIdx>0</ProfessionIdx>
     <HP>100</HP>
     <Satiety>30</Satiety>
-    <PosX>1</PosX>
-    <PosY>3</PosY>
+    <PosX>4</PosX>
+    <PosY>2</PosY>
     <IsRight>true</IsRight>
   </PlayerData>
   <TimeData>
-    <Time>110</Time>
+    <Time>349</Time>
     <IsDay>false</IsDay>
   </TimeData>
   <WeatherData>

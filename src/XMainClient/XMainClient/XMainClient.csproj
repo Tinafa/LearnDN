@@ -67,6 +67,8 @@
     <Compile Include="Documents\XDocuments.cs" />
     <Compile Include="Documents\XLoginDocument.cs" />
     <Compile Include="Documents\XMainHallDocument.cs" />
+    <Compile Include="Entity\Ctrls\XAIController.cs" />
+    <Compile Include="Entity\XPet.cs" />
     <Compile Include="GameSys\IXSys.cs" />
     <Compile Include="GameSys\Weather\XSeason.cs" />
     <Compile Include="GameSys\Weather\XWeather.cs" />
@@ -99,7 +101,7 @@
     <Compile Include="Entity\IParam.cs" />
     <Compile Include="Entity\XPlayer.cs" />
     <Compile Include="XMsgCenter.cs" />
-    <Compile Include="XPlayerController.cs" />
+    <Compile Include="Entity\Ctrls\XPlayerController.cs" />
     <Compile Include="XShell.cs" />
     <Compile Include="XSoundManager.cs" />
     <Compile Include="XComponent.cs" />

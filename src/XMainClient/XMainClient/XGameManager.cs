@@ -72,11 +72,21 @@ namespace XMainClient
             bool IsNewSave = false;
             if (save == null || save.TimeData.Time == 0) IsNewSave = true;
     
+            //> Player
             playerObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Player", Vector3.zero, Quaternion.identity) as GameObject;
             playerObj.name = IsNewSave ? "River" : save.PlayerData.Name;
             player = playerObj.AddComponent<XPlayer>();
             controller = playerObj.AddComponent<XPlayerController>();
             controller.player = player;
+
+            //> Crab
+            GameObject petObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Crab",new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5, 5), 0),Quaternion.identity) as GameObject;
+            petObj.name = "Crab";
+            XPet pet = petObj.AddComponent<XPet>();
+            XAIController aictrl = petObj.AddComponent<XAIController>();
+            aictrl.SetSmartParam(1f, 0.4f);
+            aictrl.SetTarget(player);
+            aictrl.SetHost(pet);
 
             //> 新的游戏
             if (IsNewSave)
