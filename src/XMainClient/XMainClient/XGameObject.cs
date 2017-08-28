@@ -12,7 +12,7 @@ namespace XMainClient
         public string m_Location = "";
     }
 
-    class XGameObject : XEngineObject
+    public class XGameObject : XEngineObject
     {
         private Vector3 m_Position = Vector3.one * 1000;
         private Quaternion m_Rotation = Quaternion.identity;

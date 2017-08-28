@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using XUtliPoolLib;
 using System.Collections.Generic;
 
 namespace XMainClient
@@ -27,6 +28,8 @@ namespace XMainClient
         {
             int tHp = hp + playerData.HP;
             playerData.HP = tHp >= 100 ? 100 : tHp;
+
+            XDebug.singleton.AddGreenLog("Attribute: ", playerData.HP.ToString());
         }
 
         public void MinusHP(int hp)
@@ -34,6 +37,11 @@ namespace XMainClient
             int tHp = playerData.HP - hp;
             playerData.HP = tHp <= 0 ? 0 : tHp;
 
+            XDebug.singleton.AddGreenLog("Attribute: ", playerData.HP.ToString());
+            if(playerData.HP == 0)
+            {
+                XDebug.singleton.AddErrorLog("DIE DIE DIE ..........!");
+            }
             //Die!
         }
 

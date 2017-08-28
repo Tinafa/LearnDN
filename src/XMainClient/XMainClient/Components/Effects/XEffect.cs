@@ -28,6 +28,7 @@ namespace XMainClient
         public void Enter(XAttributes thost)
         {
             host = thost;
+            OnEnter();
         }
 
         public bool Update(float delta)

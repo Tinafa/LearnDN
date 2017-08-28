@@ -83,6 +83,11 @@ namespace XMainClient
             {
                 //Invoke("Restart", restartLevelDelay);
                 enabled = false;
+            }else if(other.tag == "Food")
+            {
+                XRottenApple item = new XRottenApple();
+                item.Use(this.attrComp);
+                other.gameObject.SetActive(false);
             }
         }
 

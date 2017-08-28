@@ -104,7 +104,7 @@ namespace XMainClient
 
         public void Think()
         {
-            XDebug.singleton.AddGreenLog("Crab 有话说！！");
+           // XDebug.singleton.AddGreenLog("Crab 有话说！！");
         }
     }
 }

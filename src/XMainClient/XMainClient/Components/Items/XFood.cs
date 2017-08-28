@@ -8,7 +8,9 @@ namespace XMainClient
     {
         public XApple()
         {
-            AddEffects(CommonObjectPool<XEftAddHp>.Get());
+            XEftAddHp eft = CommonObjectPool<XEftAddHp>.Get();
+            eft.HpCount = 10;
+            AddEffects(eft);
         }
     }
 

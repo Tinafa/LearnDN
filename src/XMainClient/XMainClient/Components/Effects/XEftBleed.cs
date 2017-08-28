@@ -8,7 +8,7 @@ namespace XMainClient
         public float BleedTime = 10f;
         private float timer = 0f;
 
-        public float BleedFreq = 0.2f;
+        public float BleedFreq = 1f;
         public float counter = 0f;
 
         protected override void OnEnter()
@@ -26,13 +26,14 @@ namespace XMainClient
             timer += delta;
             if(timer >= BleedTime)
             {
-                bNeedUpdate = true;
+                bNeedUpdate = false;
                 return false;
             }
             counter += delta;
             if (counter >= BleedFreq)
             {
                 host.MinusHP(BleedSpeed);
+                counter = 0f;
             }
             return true;
         }
