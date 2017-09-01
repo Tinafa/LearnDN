@@ -154,6 +154,14 @@ namespace XMainClient
             
         }
 
+        public void FixedUpdate()
+        {
+            if(InitDone)
+            {
+                _entrance.FixedUpdate();
+            }
+        }
+
         private void PauseChecker()
         {
             if (_bPause == _bPauseTrigger) return;

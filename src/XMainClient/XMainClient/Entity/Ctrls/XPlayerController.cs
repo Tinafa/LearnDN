@@ -26,12 +26,12 @@ namespace XMainClient
             if (player == null && player.IsMoving)
                 return;
 
-            int horizontal = 0;
-            int vertical = 0;
+            float horizontal = 0;
+            float vertical = 0;
 
 #if true || UNITY_STANDALONE || UNITY_WEBPLAYER
-            horizontal = (int)(Input.GetAxisRaw("Horizontal"));
-            vertical = (int)(Input.GetAxisRaw("Vertical"));
+            horizontal = (Input.GetAxisRaw("Horizontal"));
+            vertical = (Input.GetAxisRaw("Vertical"));
             if (horizontal != 0)
             {
                 vertical = 0;

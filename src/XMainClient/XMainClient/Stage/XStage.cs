@@ -90,6 +90,7 @@ namespace XMainClient
 
         public virtual void OnLeaveScene(bool transfer)
         {
+            XEntityMgr.singleton.OnLeaveScene();
             UIManager.singleton.OnLeaveScene(false);
         }
     }

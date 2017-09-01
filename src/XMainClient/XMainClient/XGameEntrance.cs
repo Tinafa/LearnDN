@@ -71,6 +71,14 @@ namespace XMainClient
             }
         }
 
+        public void FixedUpdate()
+        {
+            if(_game != null)
+            {
+                _game.FixedUpdate();
+            }
+        }
+
         public void FadeUpdate()
         {
             XAutoFade.PostUpdate();

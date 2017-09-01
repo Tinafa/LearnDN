@@ -49,6 +49,8 @@ namespace XMainClient
 
             ObjectPoolCache.Clear();
 
+            XResourceLoaderMgr.singleton.ReleasePool();
+
             Application.backgroundLoadingPriority = UnityEngine.ThreadPriority.High;
 
             StartCoroutine(LoadLevelWithProgress(scene));

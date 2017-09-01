@@ -95,8 +95,8 @@ namespace XMainClient
             XEventPool<XEventMove>.Recycle(this);
         }
 
-        public int Horizontal { get; set; }
-        public int Vertical { get; set; }
+        public float Horizontal { get; set; }
+        public float Vertical { get; set; }
     }
 
     public class XEventChop : XEventArgs

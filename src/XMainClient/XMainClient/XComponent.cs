@@ -44,6 +44,11 @@ namespace XMainClient
             //nothing goes here
         }
 
+        public virtual void FixedUpdate()
+        {
+
+        }
+
         public bool OnEvent(XEventArgs e)
         {
             int eventIndex = EnumInt32ToInt.Convert<XEventDefine>(e.ArgsDefine);

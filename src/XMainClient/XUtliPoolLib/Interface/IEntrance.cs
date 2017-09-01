@@ -17,6 +17,8 @@ namespace XUtliPoolLib
 
         void PostUpdate();
 
+        void FixedUpdate();
+
         void FadeUpdate();
 
         void Quit();

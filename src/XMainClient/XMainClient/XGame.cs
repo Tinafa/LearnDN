@@ -131,6 +131,14 @@ namespace XMainClient
             }
         }
 
+        public void FixedUpdate()
+        {
+            if (StageReady && notLoadScene)
+            {
+                _stage.FixedUpdate();
+            }
+        }
+
         public override bool Init()
         {
             if (Application.platform == RuntimePlatform.WindowsEditor ||

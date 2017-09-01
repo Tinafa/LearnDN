@@ -57,6 +57,7 @@
     <Compile Include="Table\XTableAsyncLoader.cs" />
     <Compile Include="Utility\XCommon.cs" />
     <Compile Include="Utility\XDataWrapper.cs" />
+    <Compile Include="Utility\XEnum2Int.cs" />
     <Compile Include="Utility\XHeap.cs" />
     <Compile Include="Utility\XTimer.cs" />
     <Compile Include="XDebug.cs" />

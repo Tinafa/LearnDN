@@ -13,6 +13,23 @@ namespace XMainClient
 
         public bool SceneReady { get { return _bSceneEntered; } }
 
+
+        private bool _bStarted = false;
+        public bool SceneStarted
+        {
+            get { return _bStarted; }
+            set
+            {
+                if (_bStarted == value) return;
+
+                _bStarted = value;
+                if (_bStarted)
+                {
+                    OnSceneStarted();
+                }
+            }
+        }
+
         public uint SceneID
         {
             get
@@ -33,21 +50,31 @@ namespace XMainClient
         }
         public void Update(float fDeltaT)
         {
-            
+            if(_bSceneEntered)
+            {
+                XEntityMgr.singleton.Update(fDeltaT);
+            }
         }
 
         public void PostUpdate(float fDeltaT)
         {
-
+            if (_bSceneEntered)
+            {
+                XEntityMgr.singleton.PostUpdate(fDeltaT);
+            }
         }
 
         public void FixedUpdate()
         {
-
+            if (_bSceneEntered)
+            {
+                XEntityMgr.singleton.FixedUpdate();
+            }
         }
 
         public void OnLeaveScene(bool transfer)
         {
+            _bStarted = false;
 
             XShell.singleton.TimeMagicBack();
 
@@ -67,6 +94,8 @@ namespace XMainClient
         public void OnSceneBeginLoad(uint sceneid)
         {
             _scene_id = sceneid;
+
+            _bStarted = false;
         }
 
         // this function will be called after only scene be loaded

@@ -91,7 +91,12 @@ namespace XMainClient
 
         public virtual void FixedUpdate()
         {
-
+            for (int i = 0; i < Components.Count; i++)
+            {
+                XComponent o = Components[i];
+                if (o != null && o.Enabled)
+                    o.FixedUpdate();
+            }
         }
 
         public virtual void PostUpdate(float fDeltaT)

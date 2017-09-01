@@ -4,7 +4,7 @@ using XUtliPoolLib;
 
 namespace XMainClient
 {
-    class XAttributeMgr : XSingleton<XAttributeMgr>
+    public class XAttributeMgr : XSingleton<XAttributeMgr>
     {
 
         public override bool Init()

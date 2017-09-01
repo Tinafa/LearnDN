@@ -8,6 +8,211 @@ using System.Xml.Serialization;
 
 namespace XMainClient
 {
+    public delegate void LoadCallBack(UnityEngine.Object obj, System.Object cbOjb);
+
+    public struct LoadInfo
+    {
+        public bool usePool;
+        public LoadCallBack loadCb;
+    }
+    public enum EAsyncLoadState
+    {
+        EFree,
+        EPreLoading,
+        EPreLoadingRes,
+        ELoading,
+        EInstance,
+    }
+    public class LoadAsyncTask
+    {
+        public EAsyncLoadState loadState = EAsyncLoadState.EFree;
+        private AsyncOperation asyncOp = null;
+
+        public Type loadType = null;
+        public uint hash = 0;
+        public string location = "";
+        public string ext = "";
+        public bool isSharedRes = true;
+        public UnityEngine.Object asset = null;
+
+        public List<LoadInfo> loadCbList = new List<LoadInfo>();
+        public System.Object cbObj = null;
+
+        public static int AsyncLoadCount = 0;
+        public static int MaxAsyncLoadCount = 2;
+
+        public void Clear()
+        {
+            loadState = EAsyncLoadState.EFree;
+            location = "";
+            hash = 0;
+            asset = null;
+            asyncOp = null;
+            loadCbList.Clear();
+            loadType = null;
+            cbObj = null;
+        }
+
+        public bool Update()
+        {
+            switch(loadState)
+            {
+                case EAsyncLoadState.EFree:
+                    return false;
+                case EAsyncLoadState.EPreLoading:
+                    {
+                        if (AsyncLoadCount < MaxAsyncLoadCount)
+                        {
+                            AsyncLoadCount++;
+                            asyncOp = Resources.LoadAsync(location, loadType);
+                        }
+                        else
+                        {
+                            loadState = EAsyncLoadState.EPreLoadingRes;
+                            return false;
+                        }
+                        loadState = EAsyncLoadState.ELoading;
+                        return false;
+                    }
+                case EAsyncLoadState.EPreLoadingRes:
+                    if (AsyncLoadCount < MaxAsyncLoadCount)
+                    {
+                        AsyncLoadCount++;
+                        asyncOp = Resources.LoadAsync(location, loadType);
+                        loadState = EAsyncLoadState.ELoading;
+                    }
+                    return false;
+                case EAsyncLoadState.ELoading:
+                    {
+                        if (asyncOp == null)
+                        {
+                            XResourceLoaderMgr.LoadErrorLog(location);
+                            ReturnNull();
+                            return true;
+                        }
+                        else
+                        {
+                            if (asyncOp.isDone)
+                            {
+                                AsyncLoadCount--;
+                                ResourceRequest rr = asyncOp as ResourceRequest;
+                                asset = rr.asset;
+
+                                LoadComplete();
+                                loadState = EAsyncLoadState.EFree;
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                case EAsyncLoadState.EInstance:
+                    {
+                        if (asset != null)
+                        {
+                            for (int i = 0, imax = loadCbList.Count; i < imax; ++i)
+                            {
+                                LoadInfo loadInfo = loadCbList[i];
+                                if (loadInfo.loadCb != null)
+                                {
+                                    GameObject instance = UnityEngine.Object.Instantiate(asset) as GameObject;
+                                    XResourceLoaderMgr.singleton.AssetsRefRetain(hash);
+                                    XResourceLoaderMgr.singleton.LogReverseID(instance, hash);
+                                    loadInfo.loadCb(instance, cbObj);
+                                }
+                            }
+                            loadCbList.Clear();
+                        }
+                    }
+                    return true;
+            }
+            return false;
+        }
+
+        public void CancelLoad(LoadCallBack cb)
+        {
+            int count = loadCbList.Count;
+            for (int i = count - 1; i >= 0; --i)
+            {
+                LoadInfo loadInfo = loadCbList[i];
+                if (loadInfo.loadCb == cb)
+                {
+                    loadCbList.RemoveAt(i);
+                }
+            }
+            if (loadCbList.Count == 0)
+            {
+                AsyncLoadCount--;
+            }
+        }
+
+        private void ReturnNull()
+        {
+            for (int i = 0, imax = loadCbList.Count; i < imax; ++i)
+            {
+                LoadInfo loadInfo = loadCbList[i];
+                if (loadInfo.loadCb != null)
+                {
+                    loadInfo.loadCb(null, cbObj);
+                }
+            }
+            loadCbList.Clear();
+        }
+
+        private void LoadComplete()
+        {
+            if (asset == null)
+            {
+                XResourceLoaderMgr.LoadErrorLog(location);
+                ReturnNull();
+                return;
+            }
+
+            for (int i = 0, imax = loadCbList.Count; i < imax; ++i)
+            {
+                LoadInfo loadInfo = loadCbList[i];
+                if (loadInfo.loadCb != null)
+                {
+                    if (isSharedRes)
+                    {
+                        GetSharedResourceCb(loadInfo.loadCb);
+                    }
+                    else
+                    {
+                        UnityEngine.Object o = null;
+                        if (loadInfo.usePool && XResourceLoaderMgr.singleton.GetInObjectPool(ref o, hash))
+                        {
+                            loadInfo.loadCb(o, cbObj);
+                        }
+                        else
+                        {
+                            CreateFromPrefabCb(loadInfo.loadCb);
+                        }
+                    }
+                }
+            }
+            loadCbList.Clear();
+        }
+
+        private void GetSharedResourceCb(LoadCallBack loadCb)
+        {
+            UnityEngine.Object o = XResourceLoaderMgr.singleton.GetAssetInPool(hash);
+            XResourceLoaderMgr.singleton.AssetsRefRetain(hash);
+            loadCb(o, cbObj);
+        }
+
+        private void CreateFromPrefabCb(LoadCallBack loadCb)
+        {
+            UnityEngine.Object o = XResourceLoaderMgr.singleton.GetAssetInPool(hash);
+            GameObject instance = UnityEngine.Object.Instantiate(o) as GameObject;
+            XResourceLoaderMgr.singleton.AssetsRefRetain(hash);
+            XResourceLoaderMgr.singleton.LogReverseID(instance, hash);
+            loadCb(instance, cbObj);
+        }
+    }
+
     public sealed class XResourceLoaderMgr : XSingleton<XResourceLoaderMgr>
     {
         public class UniteObjectInfo
@@ -28,6 +233,9 @@ namespace XMainClient
         private Dictionary<uint, UnityEngine.Object> _xml_pool = new Dictionary<uint, UnityEngine.Object>();
         //private XmlSerializer[] xmlSerializerCache = new XmlSerializer[1];
         private MemoryStream shareMemoryStream = new MemoryStream(8192);//512k
+
+
+        private List<LoadAsyncTask> _async_task_list = new List<LoadAsyncTask>();
 
         private uint _prefixHash = 0;
 
@@ -102,14 +310,14 @@ namespace XMainClient
             return o;
         }
 
-        private UnityEngine.Object GetAssetInPool(uint hash)
+        public UnityEngine.Object GetAssetInPool(uint hash)
         {
             UnityEngine.Object o = null;
             _asset_pool.TryGetValue(hash, out o);
             return o;
         }
 
-        private bool GetInObjectPool(ref UnityEngine.Object o, uint id)
+        public bool GetInObjectPool(ref UnityEngine.Object o, uint id)
         {
             Queue<UnityEngine.Object> list = null;
 
@@ -149,7 +357,7 @@ namespace XMainClient
             return obj;
         }
 
-        private void LogReverseID(UnityEngine.Object o, uint id)
+        public void LogReverseID(UnityEngine.Object o, uint id)
         {
             if (o != null)
             {
@@ -255,7 +463,7 @@ namespace XMainClient
             }
             list.Enqueue(obj);
         }
-        private void AssetsRefRetain(uint hash)
+        public void AssetsRefRetain(uint hash)
         {
             int refCount = 0;
             _asset_ref_count.TryGetValue(hash, out refCount);
@@ -357,6 +565,45 @@ namespace XMainClient
             }
 
             return (T)(data as XDataWrapper).Data;
+        }
+
+        public void ReleasePool()
+        {
+            foreach (KeyValuePair<uint, Queue<UnityEngine.Object>> obj in _object_pool)
+            {
+                while (obj.Value.Count > 0)
+                {
+                    UnSafeDestroy(obj.Value.Dequeue(), false);
+                }
+            }
+            _object_pool.Clear();
+            _asset_pool.Clear();
+
+            List<uint> keys = new List<uint>(_asset_ref_count.Keys);
+
+            for (int i = 0; i < keys.Count; ++i)
+            {
+                _asset_ref_count[keys[i]] = 0;
+            }
+
+            for (int i = 0; i < _async_task_list.Count; ++i)
+            {
+                _async_task_list[i].Clear();
+            }
+            _async_task_list.Clear();
+            shareMemoryStream.Close();
+            shareMemoryStream = new MemoryStream(8192);
+
+   
+            LoadAsyncTask.AsyncLoadCount = 0;
+
+
+        }
+
+        public static void SafeDestroy(ref UnityEngine.GameObject obj, bool returnPool = true)
+        {
+            XResourceLoaderMgr.singleton.UnSafeDestroy(obj, returnPool);
+            obj = null;
         }
 
         public static void LoadErrorLog(string prefab)

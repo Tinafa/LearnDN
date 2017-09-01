@@ -10,10 +10,11 @@ namespace XMainClient
         Min = -1,
         Idle = 0,
         Move = 1,
-        Chop = 2,
-        Operation = 3,
-        MoveTo = 4,
-        Max = 5,
+        Climb = 2,
+        Chop = 3,
+        Operation = 4,
+        MoveTo = 5,
+        Max = 6,
     }
 
     abstract class IParam
@@ -30,12 +31,21 @@ namespace XMainClient
 
         Fun _enterFun;
         Funs _updateFun;
+        Fun _fixedFun;
         Fun _exitFun;
 
         public StateFun(Fun enterFun, Funs updateFun, Fun exitFun)
         {
             _enterFun = enterFun;
             _updateFun = updateFun;
+            _exitFun = exitFun;
+        }
+
+        public StateFun(Fun enterFun, Funs updateFun,Fun fixedFun, Fun exitFun)
+        {
+            _enterFun = enterFun;
+            _updateFun = updateFun;
+            _fixedFun = fixedFun;
             _exitFun = exitFun;
         }
 
@@ -49,6 +59,12 @@ namespace XMainClient
         {
             if (null != _updateFun)
                 _updateFun(delta);
+        }
+
+        public void FixedUpdate()
+        {
+            if (null != _fixedFun)
+                _fixedFun();
         }
 
         public void Exit()

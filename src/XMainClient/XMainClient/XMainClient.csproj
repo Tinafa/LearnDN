@@ -64,6 +64,13 @@
     <Compile Include="Components\Talk\XTalk.cs" />
     <Compile Include="Components\Talk\XTalkCenter.cs" />
     <Compile Include="Components\Effects\XEffect.cs" />
+    <Compile Include="Components\XActionComp.cs" />
+    <Compile Include="Components\XAttrComp.cs" />
+    <Compile Include="Components\XAudioComp.cs" />
+    <Compile Include="Components\XBrainComp.cs" />
+    <Compile Include="Components\XEnergyComp.cs" />
+    <Compile Include="Components\XHeartComp.cs" />
+    <Compile Include="Components\XPresentationComp.cs" />
     <Compile Include="CutScene\XAutoFade.cs" />
     <Compile Include="CVSReader.cs" />
     <Compile Include="Documents\XBasementDocument.cs" />
@@ -73,7 +80,10 @@
     <Compile Include="Documents\XLoginDocument.cs" />
     <Compile Include="Documents\XMainHallDocument.cs" />
     <Compile Include="Entity\Ctrls\XAIController.cs" />
-    <Compile Include="Entity\XPet.cs" />
+    <Compile Include="Entity\Old\XPet.cs" />
+    <Compile Include="Entity\XEntityMgr.cs" />
+    <Compile Include="Entity\XFSM.cs" />
+    <Compile Include="Entity\XRole.cs" />
     <Compile Include="GameSys\IXSys.cs" />
     <Compile Include="GameSys\Weather\XSeason.cs" />
     <Compile Include="GameSys\Weather\XWeather.cs" />
@@ -96,15 +106,15 @@
     <Compile Include="UI\UIManager.cs" />
     <Compile Include="UI\XGameUI.cs" />
     <Compile Include="Utility\XLFU.cs" />
-    <Compile Include="Entity\XActor.cs" />
-    <Compile Include="Entity\XBaseObject.cs" />
-    <Compile Include="Entity\XCharcacter.cs" />
+    <Compile Include="Entity\Old\XActor.cs" />
+    <Compile Include="Entity\Old\XBaseObject.cs" />
+    <Compile Include="Entity\Old\XCharcacter.cs" />
     <Compile Include="Entity\XEntity.cs" />
     <Compile Include="Entity\XObject.cs" />
     <Compile Include="XGameEntrance.cs" />
     <Compile Include="XGameManager.cs" />
     <Compile Include="Entity\IParam.cs" />
-    <Compile Include="Entity\XPlayer.cs" />
+    <Compile Include="Entity\Old\XPlayer.cs" />
     <Compile Include="XMsgCenter.cs" />
     <Compile Include="Entity\Ctrls\XPlayerController.cs" />
     <Compile Include="XShell.cs" />
@@ -116,7 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XGameObject.cs" />
     <Compile Include="XResourceLoaderMgr.cs" />
-    <Compile Include="XStateMachine.cs" />
+    <Compile Include="Components\XStateMachine.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
