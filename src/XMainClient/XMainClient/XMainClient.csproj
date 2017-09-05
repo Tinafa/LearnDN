@@ -49,6 +49,9 @@
     <Reference Include="UnityEngine">
       <HintPath>..\lib\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="XDragonBones">
+      <HintPath>..\XDragonBones\bin\Debug\XDragonBones.dll</HintPath>
+    </Reference>
     <Reference Include="XUtliPoolLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\XUtliPoolLib\bin\Debug\XUtliPoolLib.dll</HintPath>
@@ -80,7 +83,6 @@
     <Compile Include="Documents\XLoginDocument.cs" />
     <Compile Include="Documents\XMainHallDocument.cs" />
     <Compile Include="Entity\Ctrls\XAIController.cs" />
-    <Compile Include="Entity\Old\XPet.cs" />
     <Compile Include="Entity\XEntityMgr.cs" />
     <Compile Include="Entity\XFSM.cs" />
     <Compile Include="Entity\XRole.cs" />
@@ -106,15 +108,11 @@
     <Compile Include="UI\UIManager.cs" />
     <Compile Include="UI\XGameUI.cs" />
     <Compile Include="Utility\XLFU.cs" />
-    <Compile Include="Entity\Old\XActor.cs" />
-    <Compile Include="Entity\Old\XBaseObject.cs" />
-    <Compile Include="Entity\Old\XCharcacter.cs" />
     <Compile Include="Entity\XEntity.cs" />
     <Compile Include="Entity\XObject.cs" />
     <Compile Include="XGameEntrance.cs" />
     <Compile Include="XGameManager.cs" />
     <Compile Include="Entity\IParam.cs" />
-    <Compile Include="Entity\Old\XPlayer.cs" />
     <Compile Include="XMsgCenter.cs" />
     <Compile Include="Entity\Ctrls\XPlayerController.cs" />
     <Compile Include="XShell.cs" />

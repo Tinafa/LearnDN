@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XDragonBones;
 
 namespace DragonBones
 {
@@ -9,7 +10,7 @@ namespace DragonBones
      * @see DragonBones.AnimationState
      * @version DragonBones 3.0
      */
-    public class Animation : BaseObject
+    public class Animation : BaseObject, IXAnimation
     {
         private static int _sortAnimationState(AnimationState a, AnimationState b)
         {
@@ -21,7 +22,10 @@ namespace DragonBones
          * @default 1
          * @version DragonBones 3.0
          */
-        public float timeScale;
+        //
+        //public float timeScale;
+
+        public float timeScale { get; set; }
 
         private bool _isPlaying;
         private bool _animationStateDirty;
@@ -471,6 +475,12 @@ namespace DragonBones
 
             return PlayConfig(_animationConfig);
         }
+
+        public IXAnimationState XFadeIn(string animationName, float fadeInTime = -1F, int playTimes = -1, int layer = 0, string group = null, int fadeOutMode = 3, bool additiveBlending = false, bool displayControl = true, bool pauseFadeOut = true, bool pauseFadeIn = true)
+        {
+            return FadeIn(animationName, fadeInTime, playTimes, layer, group, (AnimationFadeOutMode)fadeOutMode, additiveBlending, displayControl, pauseFadeOut, pauseFadeIn);
+        }
+
         /**
          * @language zh_CN
          * 播放动画。
@@ -513,6 +523,12 @@ namespace DragonBones
 
             return _lastAnimationState;
         }
+
+        public IXAnimationState XPlay(string animationName = null, int playTimes = -1)
+        {
+            return Play(animationName, playTimes);
+        }
+
         /**
          * @language zh_CN
          * 从指定时间开始播放动画。

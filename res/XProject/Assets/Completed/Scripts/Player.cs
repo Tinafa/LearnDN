@@ -122,7 +122,7 @@ namespace Completed
 			{
 				//Call AttemptMove passing in the generic parameter Wall, since that is what Player may interact with if they encounter one (by attacking it)
 				//Pass in horizontal and vertical as parameters to specify the direction to move Player in.
-				AttemptMove<Assets.Scripts.Wall> (horizontal, vertical);
+				//AttemptMove<Assets.Scripts.Wall> (horizontal, vertical);
 			}
 		}
 		
@@ -162,10 +162,10 @@ namespace Completed
 		protected override void OnCantMove <T> (T component)
 		{
             //Set hitWall to equal the component passed in as a parameter.
-            Assets.Scripts.Wall hitWall = component as Assets.Scripts.Wall;
+            /*Wall hitWall = component as Wall;
 			
 			//Call the DamageWall function of the Wall we are hitting.
-			hitWall.DamageWall (wallDamage);
+			hitWall.DamageWall (wallDamage);*/
 			
 			//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
 			animator.SetTrigger ("playerChop");

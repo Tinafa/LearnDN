@@ -12,7 +12,17 @@ namespace XMainClient
         {
             MainHallDocoment = 0,
             BasementDocument = 1,
-            MAX = 2,
+
+            XAttrComp,
+            XBrainComp,
+            XHeartComp,
+            XEnergyComp,
+            XStateMachine,
+            XPresentationComp,
+            XAudioComp,
+            XActionComp,
+
+            MAX,
         }
         public static int ComponenCreatetCount = 0;
 
@@ -49,12 +59,25 @@ namespace XMainClient
             count--;
         }
 
+        /// <summary>
+        /// 不用反射优化吗0.0
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         private XComponent ComponentFactory(XComponentSet slot)
         {
             switch(slot)
             {
                 case XComponentSet.MainHallDocoment:return new XMainHallDocument();
                 case XComponentSet.BasementDocument:return new XBasementDocument();
+                case XComponentSet.XAttrComp:return new XAttrComp();
+                case XComponentSet.XBrainComp:return new XBrainComp();
+                case XComponentSet.XHeartComp:return new XHeartComp();
+                case XComponentSet.XEnergyComp:return new XEnergyComp();
+                case XComponentSet.XStateMachine:return new XStateMachine();
+                case XComponentSet.XPresentationComp:return new XPresentationComp();
+                case XComponentSet.XAudioComp:return new XAudioComp();
+                case XComponentSet.XActionComp:return new XActionComp();
             }
             return null;
         }

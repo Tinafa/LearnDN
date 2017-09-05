@@ -9,9 +9,9 @@ namespace XMainClient
     {
         XPlayerData playerData;
 
-        XPlayer host;
+        XRole host;
 
-        public void SetHost(XPlayer player)
+        public void SetHost(XRole player)
         {
             playerData = new XPlayerData();
             host = player;
@@ -21,7 +21,7 @@ namespace XMainClient
         {
             if (host == null) return;
 
-            host.AddEffects(handler);
+            //host.AddEffects(handler);
         }
 
         public void AddHP(int hp)

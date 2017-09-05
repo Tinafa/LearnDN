@@ -56,6 +56,7 @@ namespace XMainClient
         public bool Initilize(XGameObject o, XAttrComp attr)
         {
             //> 
+            _xobject = o;
             _layer = o.Layer;
 
             bool res = Initilize();

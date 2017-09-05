@@ -13,7 +13,7 @@ namespace XMainClient
             bool bHandled = false;
 
             if (args.Firer != null)
-                bHandled = args.Firer.OnEvent(args);
+                bHandled = args.Firer.DispatchEvent(args);
 
             if (!args.ManualRecycle)
                 args.Recycle();

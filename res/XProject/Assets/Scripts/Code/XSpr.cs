@@ -9,10 +9,10 @@ namespace Assets.Scripts
     {
          public void OnChop()
         {
-            XPlayer player =  XGameManager.instance.player;
+            XRole player =  XGameManager.instance.player;
             if (player != null)
             {
-                player.OnChopDamage();
+                //player.OnChopDamage();
             }
         }
     }

@@ -10,7 +10,7 @@ namespace XMainClient
         public float levelStartDelay = 2f;
         public GameObject welcome;
         public GameObject playerObj = null;
-        public XPlayer player = null;
+        public XRole player = null;
         public XPlayerController controller = null;
 
         public XTalk talk = null;
@@ -73,22 +73,26 @@ namespace XMainClient
             if (save == null || save.TimeData.Time == 0) IsNewSave = true;
     
             //> Player
-            playerObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Player", Vector3.zero, Quaternion.identity) as GameObject;
-            playerObj.name = IsNewSave ? "River" : save.PlayerData.Name;
-            player = playerObj.AddComponent<XPlayer>();
+            //playerObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Bear", Vector3.zero, Quaternion.identity) as GameObject;
+            //playerObj.name = IsNewSave ? "Bear" : save.PlayerData.Name;
+
+            XAttrComp attr = new XAttrComp();
+            attr.Prefab = "Bear";
+            attr.EntityID = 0;
+
+            player = XEntityMgr.singleton.CreateRole(attr, Vector3.zero, Quaternion.identity, false);
+            player.AttachComponent(attr);
+            if(player != null)
+            {
+                playerObj = player.EngineObject.gameobject;
+                playerObj.name = "River";
+            }
+
             controller = playerObj.AddComponent<XPlayerController>();
-            controller.player = player;
-            XAttributes attr = playerObj.AddComponent<XAttributes>();
-            player.SetAttr(attr);
+            controller.SetHost(player);
+            //XAttributes attr = playerObj.AddComponent<XAttributes>();
 
             //> Crab
-            GameObject petObj = XResourceLoaderMgr.singleton.CreateFromPrefab("Prefabs/Crab",new Vector3(UnityEngine.Random.Range(-5,5), UnityEngine.Random.Range(-5, 5), 0),Quaternion.identity) as GameObject;
-            petObj.name = "Crab";
-            XPet pet = petObj.AddComponent<XPet>();
-            XAIController aictrl = petObj.AddComponent<XAIController>();
-            aictrl.SetSmartParam(1f, 0.4f);
-            aictrl.SetTarget(player);
-            aictrl.SetHost(pet);
 
             //> 新的游戏
             if (IsNewSave)
@@ -102,7 +106,6 @@ namespace XMainClient
                 XTimeSys.singleton.BeginRecord(save.TimeData.Time);
                 XWeatherSys.singleton.SetWeatherState(save.WeatherData);
                 playerObj.transform.localPosition = new Vector3(save.PlayerData.PosX, save.PlayerData.PosY, 0);
-                player.SetDirection(save.PlayerData.IsRight);
             }
 
             XTimeSys.singleton.RegisterDayNightHandler(OnChangeDayNight);

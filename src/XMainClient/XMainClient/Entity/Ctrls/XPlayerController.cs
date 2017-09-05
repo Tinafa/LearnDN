@@ -11,20 +11,21 @@ namespace XMainClient
 
     public class XPlayerController : MonoBehaviour, IXController
     {
-        public XPlayer player = null;
+        public XRole player = null;
 
         private void Start()
         {
+            player = XGameManager.instance.player;
         }
 
-        private void Update()
+        public void SetHost(XRole host)
         {
-            if(player == null)
-            {
-                player = XGameManager.instance.player;
-            }
-            if (player == null && player.IsMoving)
-                return;
+            player = host;
+        }
+
+        void Update()
+        {
+            if (player == null) return;
 
             float horizontal = 0;
             float vertical = 0;
@@ -60,15 +61,12 @@ namespace XMainClient
 				}
             }
 #endif
-            if(horizontal != 0 || vertical != 0)
-            {
-                XEventMove ev = XEventPool<XEventMove>.GetEvent();
-                ev.Firer = player;
-                ev.Horizontal = horizontal;
-                ev.Vertical = vertical;
+            XEventMove ev = XEventPool<XEventMove>.GetEvent();
+            ev.Firer = player;
+            ev.Horizontal = horizontal;
+            ev.Vertical = vertical;
 
-                XEventMgr.singleton.FireEvent(ev);
-            }            
+            XEventMgr.singleton.FireEvent(ev);
         }
     }
 }

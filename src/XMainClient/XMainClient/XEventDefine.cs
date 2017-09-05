@@ -22,7 +22,7 @@ namespace XMainClient
     public abstract class XEventArgs
     {
         protected long _token = 0;
-        protected XBaseObject _firer = null;
+        protected XObject _firer = null;
 
         public XEventArgs()
         {
@@ -44,7 +44,7 @@ namespace XMainClient
             set;
         }
 
-        public XBaseObject Firer
+        public XObject Firer
         {
             get { return _firer; }
             set { _firer = value; }
@@ -127,7 +127,7 @@ namespace XMainClient
             DamageNum = 0;
         }
 
-        public XActor Attacker { get; set; }
+        public XRole Attacker { get; set; }
         public int DamageNum { get; set; }
     }
 

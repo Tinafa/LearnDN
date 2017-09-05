@@ -7,8 +7,8 @@ namespace XMainClient
 
     class XAIController : MonoBehaviour,IXAIController
     {
-        XCharcacter target = null;
-        XPet host = null;
+        XRole target = null;
+        XEntity host = null;
 
         public float think = 0.3f;
         public float lookup = 0.2f;
@@ -28,11 +28,11 @@ namespace XMainClient
             lookup = lookT;
         }
 
-        public void SetTarget(XCharcacter character)
+        public void SetTarget(XRole character)
         {
             target = character;
         }
-        public void SetHost(XPet character)
+        public void SetHost(XEntity character)
         {
             host = character;
         }
@@ -46,10 +46,10 @@ namespace XMainClient
 
                 if(target != null && host != null)
                 {
-                    Vector3 pos = target.gameObject.transform.localPosition;
+                    Vector3 pos = target.EngineObject.transform.localPosition;
                     int posx = Mathf.RoundToInt(pos.x);
                     int posy = Mathf.RoundToInt(pos.y);
-                    Vector3 curPos = host.gameObject.transform.localPosition;
+                    Vector3 curPos = host.EngineObject.transform.localPosition;
                     int curPosX = Mathf.RoundToInt(curPos.x);
                     int curPosY = Mathf.RoundToInt(curPos.y);
                     if(Mathf.Abs(curPosX-posx)>=2 || Mathf.Abs(curPosY-posy)>=2)
@@ -72,7 +72,7 @@ namespace XMainClient
 
                 if(host !=null)
                 {
-                    host.Think();
+                    //host.Think();
                 }
             }
 

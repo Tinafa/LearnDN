@@ -28,7 +28,7 @@ namespace XMainClient
         public string Prefab { get { return _prefab_name; } set { _prefab_name = value; } }
         public string Name { get { return _name; } set { _name = value; } }
 
-        XPlayerData _datas = null;
+       // XPlayerData _datas = null;
         
 
         public override void OnAttachToHost(XObject host)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XDragonBones;
 
 namespace DragonBones
 {
@@ -12,7 +13,7 @@ namespace DragonBones
      * @see DragonBones.IArmatureDisplay
      * @version DragonBones 3.0
      */
-    public class Armature : BaseObject, IAnimateble
+    public class Armature : BaseObject, IAnimateble , IXArmature
     {
         private static int _onSortSlots(Slot a, Slot b)
         {
@@ -829,6 +830,12 @@ namespace DragonBones
         {
             get { return _animation; }
         }
+
+        public IXAnimation xanimation
+        {
+            get { return _animation; }
+        }
+
         /**
          * @language zh_CN
          * 获取事件监听器。

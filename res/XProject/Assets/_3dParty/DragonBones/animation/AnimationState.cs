@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using XDragonBones;
 
 namespace DragonBones
 {
@@ -9,7 +10,7 @@ namespace DragonBones
      * @see DragonBones.AnimationData
      * @version DragonBones 3.0
      */
-    public class AnimationState : BaseObject
+    public class AnimationState : BaseObject, IXAnimationState
     {
         /**
          * @language zh_CN
@@ -17,49 +18,49 @@ namespace DragonBones
          * @see DragonBones.Slot#displayController
          * @version DragonBones 3.0
          */
-        public bool displayControl;
+        public bool displayControl { get; set; }
         /**
          * @language zh_CN
          * 是否以增加的方式混合。
          * @version DragonBones 3.0
          */
-        public bool additiveBlending;
+        public bool additiveBlending { get; set; }
         /**
          * @language zh_CN
          * 是否能触发行为。
          * @version DragonBones 5.0
          */
-        public bool actionEnabled;
+        public bool actionEnabled { get; set; }
         /**
          * @language zh_CN
          * 播放次数。 [0: 无限循环播放, [1~N]: 循环播放 N 次]
          * @version DragonBones 3.0
          */
-        public uint playTimes;
+        public uint playTimes { get; set; }
 
         /**
          * @language zh_CN
          * 播放速度。 [(-N~0): 倒转播放, 0: 停止播放, (0~1): 慢速播放, 1: 正常播放, (1~N): 快速播放]
          * @version DragonBones 3.0
          */
-        public float timeScale;
+        public float timeScale { get; set; }
         /**
          * @language zh_CN
          * 混合权重。
          * @version DragonBones 3.0
          */
-        public float weight;
+        public float weight { get; set; }
         /**
          * @language zh_CN
          * 自动淡出时间。 [-1: 不自动淡出, [0~N]: 淡出时间] (以秒为单位)
          * 当设置一个大于等于 0 的值，动画状态将会在播放完成后自动淡出。
          * @version DragonBones 3.0
          */
-        public float autoFadeOutTime;
+        public float autoFadeOutTime { get; set; }
         /**
          * @private
          */
-        public float fadeTotalTime;
+        public float fadeTotalTime { get; set; }
         /**
          * @private
          */

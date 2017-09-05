@@ -5,9 +5,9 @@ using XMainClient;
 
 namespace Assets.Scripts
 {
-    class XPlayerController : MonoBehaviour
+    class PlayerController : MonoBehaviour
     {
-        public XPlayer player = null;
+        public XRole player = null;
 
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
         private Vector2 touchOrigin = -Vector2.one;
@@ -20,7 +20,7 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (player == null || player.IsMoving) return;
+            if (player == null) return;
 
             int horizontal = 0;
             int vertical = 0;

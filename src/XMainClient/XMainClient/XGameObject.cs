@@ -112,6 +112,15 @@ namespace XMainClient
             }
         }
 
+        public GameObject gameobject
+        {
+            get
+            {
+                return m_GameObject;
+            }
+        }
+
+
         public Rigidbody2D Rigid2d
         {
             get {
