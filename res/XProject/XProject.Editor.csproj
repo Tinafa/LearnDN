@@ -151,6 +151,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Editor\TutorialInfoEditor.cs" />
+    <Compile Include="Assets\_3dParty\DragonBones\unity\Editor\AssetProcess.cs" />
+    <Compile Include="Assets\_3dParty\DragonBones\unity\Editor\DragonBonesIcons.cs" />
+    <Compile Include="Assets\_3dParty\DragonBones\unity\Editor\UnityArmatureEditor.cs" />
+    <Compile Include="Assets\_3dParty\DragonBones\unity\Editor\UnityEditor.cs" />
     <Compile Include="Assets\_3dParty\NGUI\Scripts\Editor\ActiveAnimationEditor.cs" />
     <Compile Include="Assets\_3dParty\NGUI\Scripts\Editor\BMFontReader.cs" />
     <Compile Include="Assets\_3dParty\NGUI\Scripts\Editor\ComponentSelector.cs" />
@@ -246,6 +250,7 @@
     <None Include="Assets\Resources\Table\Scene.txt" />
     <None Include="Assets\Resources\Table\Talk.txt" />
     <None Include="Assets\Resources\test.txt" />
+    <None Include="Assets\Scripts\Demos\LightTestShader.shader" />
     <None Include="Assets\StreamingAssets\test.txt" />
     <None Include="Assets\TutorialInfo\Fonts\LICENSE.txt" />
     <None Include="Assets\_3dParty\NGUI\ReadMe - 3.7.4.txt" />
