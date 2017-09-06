@@ -26,16 +26,16 @@ namespace XMainClient
         private string climbAniName = "walk";
         private string climbIdleAniName = "stand";
         private string walkAniName = "walk";
-        private string attackAniName = "hit";
+        private string attackAniName = "atc";
 
         private BoxCollider2D box2d = null;
         private XFSM FSM = null;
 
         /// <summary>
-        ///     upClimbCheck
-        ///       root
-        ///    foot
-        ///      groundCheck
+        ///          upClimbCheck
+        /// leftCheck -- root -- rightCheck
+        ///              foot
+        ///           groundCheck
         /// </summary>
         /// 
         private Transform transform = null;
@@ -64,7 +64,7 @@ namespace XMainClient
 
         private int facingDir = -1;
 
-        private bool grounded = false;          // Whether or not the player is grounded.
+        private bool grounded = false;
         private bool climb = false;
         private bool move = false;
         private bool chop = false;
@@ -122,6 +122,8 @@ namespace XMainClient
             root = null;
             foot = null;
             groundCheck = null;
+            leftCheck = null;
+            rightCheck = null;
             needModify = false;
 
             horizontal = 0;
